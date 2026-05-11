@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect, useRef } from "react";
 import "./App.css";
 
 function App() {
+  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
   const [mediaList, setMediaList] = useState([]);
   const [currentMedia, setCurrentMedia] = useState(null);
   const [categories, setCategories] = useState({});
@@ -32,7 +33,7 @@ function App() {
 
     intervalRef.current = setInterval(async () => {
       try {
-        const res = await fetch(`http://localhost:5000/progress/${jobId}`);
+        const res = await fetch(`${API_BASE_URL}/progress/${jobId}`);
         if (!res.ok) {
           throw new Error(`Progress request failed with ${res.status}`);
         }
@@ -126,7 +127,7 @@ function App() {
       setProgress(0);
 
       try {
-        const initRes = await fetch("http://localhost:5000/init_upload", { method: "POST" });
+        const initRes = await fetch(`${API_BASE_URL}/init_upload`, { method: "POST" });
         const initData = await initRes.json();
         
         if (!initRes.ok) {
@@ -152,7 +153,7 @@ function App() {
           formData.append("job_id", jobId);
           formData.append("filename", file.name);
 
-          const chunkRes = await fetch("http://localhost:5000/upload_chunk", {
+          const chunkRes = await fetch(`${API_BASE_URL}/upload_chunk`, {
             method: "POST",
             body: formData
           });

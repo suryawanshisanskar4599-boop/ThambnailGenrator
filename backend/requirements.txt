@@ -1,0 +1,8 @@
+Flask
+flask-cors
+waitress
+Werkzeug
+opencv-python-headless
+numpy
+requests
+replicate
