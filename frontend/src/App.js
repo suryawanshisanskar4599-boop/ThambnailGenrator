@@ -1,7 +1,9 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import "./App.css";
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_BASE_URL = process.env.NODE_ENV === "development" 
+  ? "http://localhost:5000" 
+  : "https://thambnailgenrator.onrender.com";
 
 function App() {
   const [mediaList, setMediaList] = useState([]);
