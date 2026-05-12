@@ -1,8 +1,9 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import "./App.css";
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 function App() {
-  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
   const [mediaList, setMediaList] = useState([]);
   const [currentMedia, setCurrentMedia] = useState(null);
   const [categories, setCategories] = useState({});
